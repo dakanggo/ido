@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ido-deployment
+  namespace: myapp
+  labels:
+    app: ido-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ido-backend
+  template:
+    metadata:
+      labels:
+        app: ido-backend
+    spec:
+      containers:
+        - name: ido-backend
+          image: ido-backend:v1.0
+          ports:
+            - containerPort: 5000
+              name: http
+              protocol: TCP
